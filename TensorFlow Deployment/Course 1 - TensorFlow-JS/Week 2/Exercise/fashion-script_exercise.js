@@ -27,20 +27,22 @@ function getModel() {
     	}));
 
     	model.add(tf.layers.conv2d({
-    		filters: 32,
+    		filters: 16,
     		kernelSize: 3,
 	    	activation: 'relu'
     	}));
     	model.add(tf.layers.maxPooling2d({
     		poolSize: [2, 2]
-    }));
+        }));
 
     	model.add(tf.layers.flatten());
 
     	model.add(tf.layers.dense({
-	    	units: 256,
+	    	units: 128,
 	    	activation: 'relu'
-    }));    
+        }));
+	
+	model.add(tf.layers.dense({units: 10, activation: 'softmax'}));
     
     // Compile the model using the categoricalCrossentropy loss,
     // the tf.train.adam() optimizer, and accuracy for your metrics.
